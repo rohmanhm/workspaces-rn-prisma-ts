@@ -5,8 +5,14 @@
       "packages/*"
     ],
     "nohoist": [
+      "**/rimraf",
+      "**/rimraf/**",
       "**/react-native",
       "**/react-native/**",
+      "**/graphql-yoga",
+      "**/graphql-yoga/**",
+      "**/prisma-binding/**",
+      "**/prisma-binding/**",
       "**/react-native-elements",
       "**/react-native-elements/**",
       "**/expo",
@@ -16,7 +22,11 @@
       "**/react-native-typescript-transformer",
       "**/react-native-typescript-transformer/**",
       "**/metro-bundler-config-yarn-workspaces",
-      "**/metro-bundler-config-yarn-workspaces/**"
+      "**/metro-bundler-config-yarn-workspaces/**",
+      "**/ws",
+      "**/ws/**",
+      "**/ts-node",
+      "**/ts-node/**"
     ]
   }
 }
