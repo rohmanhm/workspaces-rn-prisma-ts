@@ -7,8 +7,12 @@
     "nohoist": [
       "**/react-native",
       "**/react-native/**",
+      "**/react-native-elements",
+      "**/react-native-elements/**",
       "**/expo",
       "**/expo/**",
+      "**/@expo/vector-icons",
+      "**/@expo/vector-icons/**",
       "**/react-native-typescript-transformer",
       "**/react-native-typescript-transformer/**",
       "**/metro-bundler-config-yarn-workspaces",

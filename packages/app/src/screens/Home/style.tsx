@@ -1,5 +1,5 @@
 import Styled from 'styled-components/native'
-import Icon from 'react-native-vector-icons/Ionicons'
+import { Ionicons as Icon } from '@expo/vector-icons'
 import {
   PRIMARY_COLOR,
   GREY_COLOR
