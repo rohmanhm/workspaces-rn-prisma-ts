@@ -1,0 +1,79 @@
+type Admin {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  email: String! @unique
+  password: String!
+  name: String!
+  role: AdminRole! @default(value: "MODERATOR")
+  vouchersModerated: [Voucher!]! @relation(name: "VoucherModerator")
+  productsModerated: [Product!]! @relation(name: "ProductModerator")
+  categoriesModerated: [Category!]! @relation(name: "CategoryModerator")
+}
+
+enum AdminRole {
+  SUPERADMIN
+  MODERATOR
+}
+
+type Cart {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  quantity: Float!
+  isPaid: Boolean! @default(value: "false")
+  user: User! @relation(name: "UserCart")
+  product: Product! @relation(name: "CartProduct")
+}
+
+type Category {
+  id: ID! @unique
+  name: String! @unique
+  pictureUrl: String!
+  description: String
+  slug: String! @unique
+  moderator: Admin! @relation(name: "CategoryModerator")
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Product {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  price: Float!
+  basePrice: Float
+  description: String
+  type: ProductType! @default(value: "PRODUCT")
+  moderator: Admin! @relation(name: "ProductModerator")
+  carts: [Cart!]! @relation(name: "CartProduct")
+}
+
+enum ProductType {
+  PRODUCT
+  VOUCHER
+  BALANCE
+}
+
+type Voucher {
+  id: ID! @unique
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  code: String!
+  serial: String
+  isSold: Boolean! @default(value: "false")
+  basePrice: Float!
+  soldPrice: Float
+  moderator: Admin! @relation(name: "VoucherModerator")
+}
+
+type User {
+  id: ID! @unique
+  email: String! @unique
+  password: String!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  carts: [Cart!]! @relation(name: "UserCart", onDelete: CASCADE)
+}

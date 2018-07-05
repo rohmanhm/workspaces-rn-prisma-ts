@@ -1,0 +1,85 @@
+mutation {
+	createSuperAdmin: createAdmin (data: {
+    email: "dev@dev.com"
+    password: "$2a$10$hACwQ5/HQI6FhbIISOUVeusy3sKyUDhSq36fF5d/54aAdiygJPFzm" # plaintext password: "nooneknows"
+    name: "Dev Admin", 
+    role: SUPERADMIN
+  }) {
+    id
+  },
+  createModeratorAdmin: createAdmin (data: {
+    email: "mod@dev.com"
+    password: "$2a$10$hACwQ5/HQI6FhbIISOUVeusy3sKyUDhSq36fF5d/54aAdiygJPFzm" # plaintext password: "nooneknows"
+    name: "Moderator Admin", 
+    role: MODERATOR
+  }) {
+    id
+  }
+
+  createCategoryGarena: createCategory (data: {
+    name: "Garena",
+    pictureUrl: "https://unduhsoft.net/wp-content/uploads/2018/01/GARENA-LOGO-VECTOR.jpg",
+    description: "Garena. Game. Platform. Career · Support · Top-up · Akun Saya. Garena has recently updated its Privacy Policy. Click here to view. I have read the Privacy",
+    slug:"garena",
+    moderator: {
+      connect: {
+        email: "dev@dev.com"
+      }
+    }
+  }) {
+    id
+  },
+  createCategorySteam: createCategory (data: {
+    name: "Steam",
+    pictureUrl: "https://pmcvariety.files.wordpress.com/2018/04/steam.jpg?w=760&h=428&crop=1",
+    description: "Steam adalah platform distribusi digital yang dibuat oleh Valve Corporation, yang menawarkan layanan permainan video multipemain, manajemen hak digital, jejaring sosial, dan streaming vide",
+    slug:"steam",
+    moderator: {
+      connect: {
+        email: "dev@dev.com"
+      }
+    }
+  }) {
+    id
+  },
+  createCategoryGoogleplay: createCategory (data: {
+    name: "Google Play",
+    pictureUrl: "https://img.talkandroid.com/uploads/2014/10/google-play-logo.jpg",
+    description: "Google Play adalah layanan konten digital milik Google yang melingkupi toko daring untuk produk-produk seperti musik/lagu, buku, aplikasi, permainan, ataupun pemutar media berbasis awan",
+    slug:"google-play",
+    moderator: {
+      connect: {
+        email: "mod@dev.com"
+      }
+    }
+  }) {
+    id
+  },
+
+  createProductSteam100: createProduct(data: {
+    price: 1800,
+    name: "Steam IDR100",
+    description: "Steam dengan isi Rp100",
+    type: VOUCHER, 
+    moderator: {
+      connect: {
+        email: "mod@dev.com"
+      }
+    }
+  }) {
+    name
+  },
+  createProductSteam200: createProduct(data: {
+    price: 2800,
+    name: "Steam IDR200",
+    description: "Steam dengan isi Rp200",
+    type: VOUCHER, 
+    moderator: {
+      connect: {
+        email: "mod@dev.com"
+      }
+    }
+  }) {
+    name
+  }
+}
