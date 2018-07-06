@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
+    "graphql": "0.13.1",
+    "graphql-binding": "^2.1.1",
     "graphql-yoga": "^1.14.12",
     "jsonwebtoken": "8.3.0",
     "prisma-binding": "2.1.0"
@@ -28,5 +30,8 @@
     "rimraf": "2.6.2",
     "ts-node": "6.2.0",
     "typescript": "2.9.2"
+  },
+  "resolutions": {
+    "graphql": "0.13.1"
   }
 }

@@ -10,12 +10,16 @@ type Query {
 }
 
 type Mutation {
-  signup(email: String!, password: String!, name: String!): AuthPayload!
-  login(email: String!, password: String!): AuthPayload!
+  signup(email: String!, password: String!, name: String!): AuthResponse!
+  login(email: String!, password: String!): AuthResponse!
   refreshToken(token: String!): String!
   # createDraft(title: String!, text: String!): Post!
   # publish(id: ID!): Post!
   # deletePost(id: ID!): Post!
+}
+
+type AuthPayload {
+  user: User
 }
 
 # type Subscription {
@@ -23,7 +27,7 @@ type Mutation {
 # }
 
 type AuthResponse {
-  success: AuthPayload
+  success: AuthSuccess
   error: AuthError
 }
 
@@ -32,7 +36,7 @@ type AuthError {
   message: String!
 }
 
-type AuthPayload {
+type AuthSuccess {
   token: String!
   user: User!
 }
