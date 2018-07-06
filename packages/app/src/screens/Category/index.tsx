@@ -1,13 +1,27 @@
 import * as React from 'react'
 import { View } from 'react-native'
 import { Header, ListItem } from 'react-native-elements'
+import { Query } from 'react-apollo'
+import gql from 'graphql-tag'
 
 import { Container, SafeAreaView } from '../../components'
 import { PRIMARY_COLOR } from '@reptir/constants'
 
+const GET_CATEGORIES_QUERY = gql`
+  query getCategories {
+    categories {
+      id
+      name
+      slug
+      pictureUrl
+      description
+    }
+  }
+`
+
 class CategoryScreen extends React.Component {
 
-  render() {
+  renderCategories () {
     const list = [
       {
         name: 'Garena',
@@ -22,13 +36,11 @@ class CategoryScreen extends React.Component {
     ]
 
     return (
-      <SafeAreaView>
-        <Container>
-        <Header
-          centerComponent={{ text: 'REPTIR', style: { color: '#fff' } }}
-          outerContainerStyles={{backgroundColor: PRIMARY_COLOR, paddingTop: 20, height: 80}}
-        />
-          <View>
+      <Query query={GET_CATEGORIES_QUERY}>
+        {(props) => {
+          // props.data.categories
+          return (
+            <View>
             {
               list.map((l, i) => (
                 <ListItem
@@ -50,6 +62,21 @@ class CategoryScreen extends React.Component {
               ))
             }
           </View>
+          )
+        }}
+      </Query>
+    )
+  }
+
+  render() {
+    return (
+      <SafeAreaView>
+        <Container>
+        <Header
+          centerComponent={{ text: 'REPTIR', style: { color: '#fff' } }}
+          outerContainerStyles={{backgroundColor: PRIMARY_COLOR, paddingTop: 20, height: 80}}
+        />
+          {this.renderCategories()}
         </Container>
       </SafeAreaView>
     )

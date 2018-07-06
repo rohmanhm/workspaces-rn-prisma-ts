@@ -6,8 +6,14 @@
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
     "@reptir/constants": "0.0.1",
+    "apollo-cache-inmemory": "^1.2.5",
+    "apollo-client": "^2.3.5",
+    "apollo-link-http": "^1.5.4",
     "expo": "^27.0.1",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2",
     "react": "16.3.1",
+    "react-apollo": "^2.1.9",
     "react-native": "https://github.com/expo/react-native/archive/sdk-27.0.0.tar.gz",
     "react-native-elements": "^1.0.0-beta5",
     "react-navigation": "^2.5.5",
@@ -19,6 +25,8 @@
     "@types/react": "^16.3.17",
     "@types/react-native": "^0.55.17",
     "@types/react-navigation": "^2.0.9",
+    "apollo": "^1.2.0",
+    "apollo-codegen": "^0.20.2",
     "babel-preset-react-native": "^4.0.0",
     "metro-bundler-config-yarn-workspaces": "^1.0.3",
     "react-native-typescript-transformer": "^1.2.9",
@@ -26,6 +34,9 @@
   },
   "scripts": {
     "start": "exp start --offline",
-    "ios": "exp ios"
+    "ios": "exp ios",
+    "schema:download": "apollo schema:download --endpoint=http://localhost:4000",
+    "codegen:generate": "apollo codegen:generate --queries=./src/**/*.tsx --schema=./schema.json --target=typescript ./__generated",
+    "gen:types": "npm run schema:download && npm run codegen:generate"
   }
 }

@@ -2,6 +2,8 @@ import * as React from 'react'
 import { createBottomTabNavigator } from 'react-navigation'
 import Icon from 'react-native-vector-icons/Ionicons'
 
+import ApolloWrapper from './hocs/ApolloWrapper'
+
 import Home from './screens/Home'
 import Profile from './screens/Profile'
 import Category from './screens/Category'
@@ -16,7 +18,7 @@ export default createBottomTabNavigator({
   },
 
   Category: {
-    screen: Category,
+    screen: ApolloWrapper(Category),
     navigationOptions: {
       tabBarLabel: "Category",
       tabBarIcon: ({ tintColor }: any) => (<Icon name="ios-apps-outline" color={tintColor} size={32}/>)
